@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>계산기</title>
+</head>
+<body>
+
+<h3>금액 계산기</h3>
+
+<input id="b3" type="number" placeholder="B3 값"><br>
+<input id="b4" type="number" placeholder="B4 값"><br>
+<input id="b11" type="number" placeholder="B11 값"><br><br>
+
+<label><input type="checkbox" id="b6"> 옵션 1</label><br>
+<label><input type="checkbox" id="b8"> 옵션 2</label><br>
+<label><input type="checkbox" id="b9"> 옵션 3</label><br>
+<label><input type="checkbox" id="b10"> 옵션 4</label><br>
+<label><input type="checkbox" id="b13"> 옵션 5</label><br>
+<label><input type="checkbox" id="b14"> 옵션 6</label><br>
+<label><input type="checkbox" id="b15"> 옵션 7</label><br>
+<label><input type="checkbox" id="b16"> 옵션 8</label><br>
+<label><input type="checkbox" id="b17"> 옵션 9</label><br><br>
+
+<button onclick="calc()">계산하기</button>
+
+<h2 id="result"></h2>
+
+<script>
+async function calc() {
+  const data = {
+    b3: Number(b3.value),
+    b4: Number(b4.value),
+    b11: Number(b11.value),
+    b6: b6.checked,
+    b8: b8.checked,
+    b9: b9.checked,
+    b10: b10.checked,
+    b13: b13.checked,
+    b14: b14.checked,
+    b15: b15.checked,
+    b16: b16.checked,
+    b17: b17.checked
+  };
+
+  const res = await fetch("🔴여기에_웹앱_URL🔴", {
+    method: "POST",
+    body: JSON.stringify(data)
+  });
+
+  const json = await res.json();
+  document.getElementById("result").innerText =
+    `계산 결과: ${json.result.toLocaleString()}`;
+}
+</script>
+
+</body>
+</html>
